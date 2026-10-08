@@ -10,7 +10,9 @@ import {
   Package,
   Smartphone,
   Sparkles,
+  QrCode,
 } from 'lucide-react';
+import { QRCodeSVG } from 'qrcode.react';
 import { generatePlayStoreZipPackage } from '../utils/playStorePackager';
 import { usePWAInstall } from '../hooks/usePWAInstall';
 
@@ -166,6 +168,43 @@ Key Features:
               <ExternalLink className="w-3.5 h-3.5" />
               PWABuilder
             </a>
+          </div>
+        </div>
+      </div>
+
+      {/* SCAN TO DOWNLOAD ON PHONE QR CARD */}
+      <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-5 shadow-lg">
+        <div className="p-3 bg-white rounded-2xl shadow-xl border-2 border-neutral-700 flex-shrink-0">
+          <QRCodeSVG
+            value={typeof window !== 'undefined' ? window.location.href.split('?')[0] : 'https://ais-pre-asb6vzvbaeztm4aagggfbt-62144606047.asia-east1.run.app'}
+            size={115}
+            level="M"
+            fgColor="#111317"
+            bgColor="#ffffff"
+            imageSettings={{
+              src: '/favicon.png',
+              x: undefined,
+              y: undefined,
+              height: 24,
+              width: 24,
+              excavate: true,
+            }}
+          />
+        </div>
+        <div className="space-y-1.5 text-center sm:text-left flex-1">
+          <div className="flex items-center justify-center sm:justify-start gap-2">
+            <span className="bg-red-600 text-white text-[9px] font-black px-1.5 py-0.2 rounded">
+              MOBILE QR CODE
+            </span>
+            <h4 className="text-sm font-bold text-white">Scan with Camera to Open & Download on Phone</h4>
+          </div>
+          <p className="text-xs text-neutral-300 leading-relaxed">
+            Aim your phone's camera at this QR code to load the app directly on your iPhone or Android device and add it to your home screen or install via WebAPK.
+          </p>
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 pt-1 text-[11px] text-neutral-400">
+            <span>✓ Point iPhone Camera or Android Google Lens</span>
+            <span>•</span>
+            <span>✓ Tap banner to install instantly</span>
           </div>
         </div>
       </div>

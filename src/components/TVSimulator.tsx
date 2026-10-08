@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TVState } from '../types/tv';
 import { CHANNELS, FUJI_PROGRAMS, OTHER_CHANNEL_PROGRAMS, ODAIBA_WEATHER, FUJI_NEWS_TICKER } from '../utils/tvChannels';
-import { Volume2, VolumeX, Radio, Tv, Sun, CloudRain, Wind, Sparkles, Trophy } from 'lucide-react';
+import { Volume2, VolumeX, Radio, Tv, Sun, CloudRain, Wind, Sparkles, Trophy, QrCode } from 'lucide-react';
 
 interface TVSimulatorProps {
   tvState: TVState;
@@ -9,6 +9,7 @@ interface TVSimulatorProps {
   onCloseDData: () => void;
   onSetDDataTab: (tab: 'weather' | 'news' | 'janken' | 'odaiba') => void;
   onSendReaction?: (emoji: string) => void;
+  onOpenQRCode?: () => void;
 }
 
 export const TVSimulator: React.FC<TVSimulatorProps> = ({
@@ -17,6 +18,7 @@ export const TVSimulator: React.FC<TVSimulatorProps> = ({
   onCloseDData,
   onSetDDataTab,
   onSendReaction,
+  onOpenQRCode,
 }) => {
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
@@ -171,6 +173,18 @@ export const TVSimulator: React.FC<TVSimulatorProps> = ({
                     <Radio className="w-3 h-3 text-red-400 animate-pulse" />
                     LIVE ON AIR
                   </span>
+                )}
+
+                {onOpenQRCode && (
+                  <button
+                    onClick={onOpenQRCode}
+                    className="text-[10px] bg-red-950/80 hover:bg-red-900 border border-red-500/50 text-rose-300 font-bold px-2 py-0.5 rounded flex items-center gap-1 shadow transition active:scale-95"
+                    title="Scan QR Code to download remote to phone"
+                  >
+                    <QrCode className="w-3 h-3 text-rose-400" />
+                    <span className="hidden sm:inline">Phone Remote QR</span>
+                    <span className="sm:hidden">QR</span>
+                  </button>
                 )}
               </div>
 

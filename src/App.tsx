@@ -8,6 +8,7 @@ import { InstallPromptModal } from './components/InstallPromptModal';
 import { StorePublishingHub } from './components/StorePublishingHub';
 import { VoiceRemoteModal } from './components/VoiceRemoteModal';
 import { NormalTVSetupModal } from './components/NormalTVSetupModal';
+import { QRCodeModal } from './components/QRCodeModal';
 import { usePWAInstall } from './hooks/usePWAInstall';
 import { useOnlineStatus } from './hooks/useOnlineStatus';
 import { audioHaptics } from './utils/audioHaptics';
@@ -25,6 +26,7 @@ import {
   Mic,
   Package,
   Zap,
+  QrCode,
 } from 'lucide-react';
 
 type ActiveView = 'remote' | 'duo' | 'guide' | 'store';
@@ -32,6 +34,7 @@ type ActiveView = 'remote' | 'duo' | 'guide' | 'store';
 export default function App() {
   const [activeView, setActiveView] = useState<ActiveView>('duo');
   const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
+  const [isQRModalOpen, setIsQRModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
   const [isVoiceModalOpen, setIsVoiceModalOpen] = useState(false);
@@ -369,6 +372,20 @@ export default function App() {
               <Mic className="w-4 h-4" />
             </button>
 
+            {/* QR Code Scan to Phone Button */}
+            <button
+              onClick={() => {
+                setIsQRModalOpen(true);
+                audioHaptics.playClick();
+              }}
+              className="bg-red-600/20 hover:bg-red-600/30 text-rose-300 border border-red-500/40 text-xs font-bold px-2.5 sm:px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow transition active:scale-95"
+              title="Scan QR Code to Download App to iPhone / Android"
+            >
+              <QrCode className="w-3.5 h-3.5 text-rose-400" />
+              <span className="hidden sm:inline">Phone QR</span>
+              <span className="sm:hidden">QR</span>
+            </button>
+
             {/* Install PWA Button */}
             <button
               onClick={() => setIsInstallModalOpen(true)}
@@ -433,6 +450,10 @@ export default function App() {
                 }
                 onSetDDataTab={setDDataTab}
                 onSendReaction={handleSendReaction}
+                onOpenQRCode={() => {
+                  setIsQRModalOpen(true);
+                  audioHaptics.playClick();
+                }}
               />
 
               {/* Station Feature Card & Quick Guide */}
@@ -451,12 +472,23 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 w-full sm:w-auto">
+                <div className="flex items-center gap-2 w-full sm:w-auto flex-wrap">
                   <button
                     onClick={() => selectChannel(8)}
                     className="flex-1 sm:flex-initial bg-red-600 hover:bg-red-500 text-white font-bold py-1.5 px-3 rounded-xl shadow text-xs transition"
                   >
                     Tune to Ch 8
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsQRModalOpen(true);
+                      audioHaptics.playClick();
+                    }}
+                    className="flex-1 sm:flex-initial bg-red-950/80 hover:bg-red-900 border border-red-500/50 text-rose-300 font-bold py-1.5 px-3 rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow-sm active:scale-95"
+                    title="Scan QR Code to Download App to iPhone or Android"
+                  >
+                    <QrCode className="w-3.5 h-3.5 text-rose-400" />
+                    Phone QR
                   </button>
                   <button
                     onClick={() => setIsNormalTVModalOpen(true)}
@@ -490,6 +522,7 @@ export default function App() {
                 onColorButtonPress={handleColorButtonPress}
                 onOpenEPG={() => setIsGuideModalOpen(true)}
                 onOpenVoiceRemote={() => setIsVoiceModalOpen(true)}
+                onOpenQRCode={() => setIsQRModalOpen(true)}
                 onOpenNormalTVSetup={() => setIsNormalTVModalOpen(true)}
                 normalTVBrandName={tvConfig.normalTV?.brandId?.toUpperCase()}
                 onSendReaction={handleSendReaction}
@@ -530,6 +563,7 @@ export default function App() {
               onColorButtonPress={handleColorButtonPress}
               onOpenEPG={() => setIsGuideModalOpen(true)}
               onOpenVoiceRemote={() => setIsVoiceModalOpen(true)}
+              onOpenQRCode={() => setIsQRModalOpen(true)}
               onOpenNormalTVSetup={() => setIsNormalTVModalOpen(true)}
               normalTVBrandName={tvConfig.normalTV?.brandId?.toUpperCase()}
               onSendReaction={handleSendReaction}
@@ -576,6 +610,11 @@ export default function App() {
         onClose={() => setIsInstallModalOpen(false)}
       />
 
+      <QRCodeModal
+        isOpen={isQRModalOpen}
+        onClose={() => setIsQRModalOpen(false)}
+      />
+
       <VoiceRemoteModal
         isOpen={isVoiceModalOpen}
         onClose={() => setIsVoiceModalOpen(false)}
@@ -609,6 +648,16 @@ export default function App() {
             <span className="text-emerald-400 font-medium">Universal Normal TV & Play Store Packaging Ready</span>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={() => {
+                setIsQRModalOpen(true);
+                audioHaptics.playClick();
+              }}
+              className="text-rose-400 hover:text-rose-300 underline font-bold flex items-center gap-1"
+            >
+              <QrCode className="w-3.5 h-3.5" />
+              Scan Phone QR
+            </button>
             <button
               onClick={() => setIsNormalTVModalOpen(true)}
               className="text-amber-400 hover:text-amber-300 underline font-bold"

@@ -20,6 +20,7 @@ import {
   Lightbulb,
   MousePointer,
   Sparkles,
+  QrCode,
 } from 'lucide-react';
 
 interface FujiRemoteControlProps {
@@ -35,6 +36,7 @@ interface FujiRemoteControlProps {
   onColorButtonPress: (color: 'blue' | 'red' | 'green' | 'yellow') => void;
   onOpenEPG: () => void;
   onOpenVoiceRemote?: () => void;
+  onOpenQRCode?: () => void;
   onSendReaction?: (emoji: string) => void;
   remoteMode?: 'keypad' | 'touchpad';
   onToggleRemoteMode?: () => void;
@@ -59,6 +61,7 @@ export const FujiRemoteControl: React.FC<FujiRemoteControlProps> = ({
   onColorButtonPress,
   onOpenEPG,
   onOpenVoiceRemote,
+  onOpenQRCode,
   onSendReaction,
   remoteMode = 'keypad',
   onToggleRemoteMode,
@@ -146,22 +149,51 @@ export const FujiRemoteControl: React.FC<FujiRemoteControlProps> = ({
             <span className="text-[9px] text-neutral-400 font-semibold tracking-wider">
               Smart TV Remote Controller
             </span>
-            {onOpenNormalTVSetup && (
-              <button
-                onClick={() => {
-                  audioHaptics.playClick();
-                  onOpenNormalTVSetup();
-                }}
-                className="mt-1 text-[8px] bg-neutral-800/90 hover:bg-neutral-700/90 border border-neutral-700 px-1.5 py-0.5 rounded-md text-neutral-300 font-mono flex items-center gap-1 w-fit transition active:scale-95"
-                title="Configure Normal Physical TV Control (IR / Wi-Fi)"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Normal TV IR: <strong className="text-white font-sans">{normalTVBrandName || 'Universal'}</strong></span>
-              </button>
-            )}
+            <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+              {onOpenNormalTVSetup && (
+                <button
+                  onClick={() => {
+                    audioHaptics.playClick();
+                    onOpenNormalTVSetup();
+                  }}
+                  className="text-[8px] bg-neutral-800/90 hover:bg-neutral-700/90 border border-neutral-700 px-1.5 py-0.5 rounded-md text-neutral-300 font-mono flex items-center gap-1 w-fit transition active:scale-95"
+                  title="Configure Normal Physical TV Control (IR / Wi-Fi)"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Normal TV: <strong className="text-white font-sans">{normalTVBrandName || 'Universal'}</strong></span>
+                </button>
+              )}
+              {onOpenQRCode && (
+                <button
+                  onClick={() => {
+                    audioHaptics.playClick();
+                    onOpenQRCode();
+                  }}
+                  className="text-[8px] bg-red-950/80 hover:bg-red-900/80 border border-red-500/40 px-1.5 py-0.5 rounded-md text-rose-300 font-mono flex items-center gap-1 w-fit transition active:scale-95 shadow-sm"
+                  title="Scan QR Code to Download App to Phone"
+                >
+                  <QrCode className="w-2.5 h-2.5 text-rose-400" />
+                  <span>Phone QR</span>
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-1.5">
+            {/* Phone QR Code Shortcut Button */}
+            {onOpenQRCode && (
+              <button
+                onClick={() => {
+                  audioHaptics.playClick();
+                  onOpenQRCode();
+                }}
+                className="w-9 h-9 rounded-xl bg-neutral-800 hover:bg-neutral-750 text-rose-400 hover:text-white border border-neutral-700 hover:border-red-500/40 flex items-center justify-center transition active:scale-90"
+                title="Scan QR Code to Download to Phone"
+              >
+                <QrCode className="w-4 h-4" />
+              </button>
+            )}
+
             {/* AI Voice Assistant Mic Button */}
             {onOpenVoiceRemote && (
               <button
