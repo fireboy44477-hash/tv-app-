@@ -1,0 +1,8 @@
+{
+  "name": "Fuji TV Remote - Smart TV Controller",
+  "description": "Fuji Television Smart TV Remote, interactive d-data companion, EPG program guide, and universal smart TV controller for iOS, Android & Web.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

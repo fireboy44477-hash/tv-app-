@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1e24" />
+      <stop offset="40%" stop-color="#121316" />
+      <stop offset="100%" stop-color="#0a0a0c" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff3366" />
+      <stop offset="60%" stop-color="#e60039" />
+      <stop offset="100%" stop-color="#b3002d" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd166" />
+      <stop offset="100%" stop-color="#f77f00" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background base with rounded squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect width="504" height="504" x="4" y="4" rx="108" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="3" />
+
+  <!-- Outer subtle TV signal rings -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="url(#accentGrad)" stroke-width="3" stroke-dasharray="16 12" opacity="0.35" />
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#38bdf8" stroke-width="2" stroke-opacity="0.25" />
+
+  <!-- Remote Body Outline Silhouette in the center -->
+  <g transform="translate(186, 76)">
+    <!-- Remote Chassis -->
+    <rect x="0" y="0" width="140" height="360" rx="36" fill="#18191f" stroke="#2d3139" stroke-width="4" filter="url(#glow)" />
+    
+    <!-- IR Blaster Emitter Glow at Top -->
+    <rect x="52" y="-6" width="36" height="8" rx="4" fill="#ff3366" />
+    <circle cx="70" cy="-2" r="12" fill="#ff3366" opacity="0.5" filter="url(#glow)" />
+
+    <!-- Power button red -->
+    <circle cx="36" cy="38" r="14" fill="url(#accentGrad)" />
+    <path d="M36 28 v8 M31 32 a7 7 0 1 0 10 0" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Quick "8" Fuji TV Channel Button Highlighted -->
+    <rect x="25" y="70" width="90" height="90" rx="20" fill="#20242e" stroke="url(#accentGrad)" stroke-width="3" />
+    <text x="70" y="132" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="52" fill="#ffffff" text-anchor="middle">8</text>
+    <text x="70" y="152" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="10" fill="#ff4d79" text-anchor="middle" letter-spacing="2">FUJI TV</text>
+
+    <!-- Navigation D-Pad Ring -->
+    <circle cx="70" cy="224" r="38" fill="#15171c" stroke="#333842" stroke-width="3" />
+    <circle cx="70" cy="224" r="18" fill="url(#goldGrad)" />
+    <text x="70" y="228" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="11" fill="#111" text-anchor="middle">OK</text>
+
+    <!-- 4 Colored Fuji Data Broadcast Dots (Blue, Red, Green, Yellow) -->
+    <circle cx="34" cy="286" r="6" fill="#2563eb" />
+    <circle cx="58" cy="286" r="6" fill="#dc2626" />
+    <circle cx="82" cy="286" r="6" fill="#16a34a" />
+    <circle cx="106" cy="286" r="6" fill="#eab308" />
+
+    <!-- Fuji TV 'd' Data Broadcast Badge -->
+    <rect x="36" y="308" width="68" height="24" rx="8" fill="#ff0044" />
+    <text x="70" y="324" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="11" fill="#ffffff" text-anchor="middle">d DATA</text>
+  </g>
+
+  <!-- Left / Right Callout Badges -->
+  <g transform="translate(48, 230)">
+    <rect x="0" y="0" width="76" height="52" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+    <text x="38" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="14" fill="#f43f5e" text-anchor="middle">FUJI TV</text>
+    <text x="38" y="42" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="11" fill="#94a3b8" text-anchor="middle">CH 8</text>
+  </g>
+
+  <g transform="translate(388, 230)">
+    <rect x="0" y="0" width="76" height="52" rx="14" fill="#0f172a" stroke="#1e293b" stroke-width="2" />
+    <text x="38" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="14" fill="#38bdf8" text-anchor="middle">REMOTE</text>
+    <text x="38" y="42" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="11" fill="#94a3b8" text-anchor="middle">SMART</text>
+  </g>
+
+  <!-- Bottom App Name Label -->
+  <text x="256" y="478" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="18" fill="#e2e8f0" text-anchor="middle" letter-spacing="3">FUJI TV REMOTE</text>
+</svg>

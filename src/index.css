@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    font-family: 'Noto Sans JP', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    touch-action: manipulation;
+  }
+}
+
+/* Custom Remote Tactile Bevels & Skeuomorphic Shadows */
+.remote-chassis-dark {
+  background: linear-gradient(175deg, #242730 0%, #16181e 35%, #0e1014 100%);
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 1px 0 0 rgba(255, 255, 255, 0.15) inset;
+}
+
+.remote-chassis-crimson {
+  background: linear-gradient(175deg, #3d121c 0%, #20090f 35%, #100407 100%);
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(244, 63, 94, 0.2) inset,
+    0 1px 0 0 rgba(255, 100, 130, 0.25) inset;
+}
+
+.remote-chassis-silver {
+  background: linear-gradient(175deg, #333640 0%, #23262d 40%, #171920 100%);
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+}
+
+.remote-button-tactile {
+  background: linear-gradient(180deg, #2a2e38 0%, #1b1e25 100%);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.6),
+    0 2px 4px -1px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.6) inset;
+  transition: all 0.07s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.remote-button-tactile:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 
+    0 1px 2px 0 rgba(0, 0, 0, 0.8),
+    0 1px 0 rgba(0, 0, 0, 0.5) inset;
+}
+
+.remote-fuji-accent {
+  background: linear-gradient(180deg, #ff2a5f 0%, #d10034 60%, #990026 100%);
+  box-shadow: 
+    0 4px 12px rgba(225, 29, 72, 0.45),
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.4) inset;
+}
+
+.remote-fuji-accent:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 
+    0 2px 4px rgba(225, 29, 72, 0.3),
+    0 1px 0 rgba(0, 0, 0, 0.4) inset;
+}
+
+/* Metallic D-Pad Ring */
+.dpad-ring {
+  background: radial-gradient(circle, #252830 0%, #171920 70%, #111317 100%);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+.dpad-center-button {
+  background: linear-gradient(180deg, #ff3366 0%, #cc0033 100%);
+  box-shadow: 
+    0 3px 8px rgba(204, 0, 51, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.3) inset;
+}
+
+/* Custom Scrollbar for program guide */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1115;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2e39;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3b4252;
+}
